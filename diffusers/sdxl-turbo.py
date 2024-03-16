@@ -14,7 +14,7 @@ class ImageModel(Model):
 
     def predict(self, payload: Dict, headers: Dict[str, str] = None) -> Dict:
         image = self.pipeline(prompt=payload['instances'][0], num_inference_steps=1, guidance_scale=0.0).images[0]
-        return {"instances": [image]}
+        return {"instances": image}
 
 
 if __name__ == "__main__":
