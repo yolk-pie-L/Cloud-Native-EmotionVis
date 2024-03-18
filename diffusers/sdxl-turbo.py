@@ -12,7 +12,7 @@ class ImageModel(Model):
         self.load()
 
     def load(self):
-        self.pipeline = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo")
+        self.pipeline = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", cache_dir="/tmp")
         self.ready = True
 
     def predict(self, payload: Dict, headers: Dict[str, str] = None) -> Dict:
