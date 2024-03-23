@@ -1,21 +1,14 @@
 apiVersion: "serving.kserve.io/v1alpha1"
 kind: "InferenceGraph"
 metadata:
-  name: "dog-breed-pipeline"
+  name: "simple-pipeline"
 spec:
   nodes:
     root:
       routerType: Sequence
       steps:
-      - serviceName: cat-dog-classifier
-        name: cat_dog_classifier # step name
-      - serviceName: dog-breed-classifier
-        name: dog_breed_classifier
+      - serviceName: sentiment-analysis
+        name: sentiment-analysis # step name
+      - serviceName: sdxl-turbo
+        name: sdxl-turbo
         data: $response
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      cpu: 1
-      memory: 1Gi

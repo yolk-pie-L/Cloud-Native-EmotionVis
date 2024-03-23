@@ -1,7 +1,7 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: emotions-test
+  name: sentiment-analysis
 spec:
   predictor:
     containers:
@@ -9,8 +9,8 @@ spec:
         image: lasylphide/sentiment-analysis:latest
         resources:
           limits:
-            cpu: "10"
-            memory: 10Gi
+            cpu: "4"
+            memory: 8Gi
           requests:
             cpu: "2"
             memory: 4Gi

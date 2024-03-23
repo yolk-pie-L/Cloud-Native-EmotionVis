@@ -3,7 +3,7 @@ from kserve import Model, ModelServer
 from typing import Dict, Union
 import logging
 
-class ImageModel(Model):
+class SentimentAnalysis(Model):
     def __init__(self, name: str):
         super().__init__(name)
         self.name = name
@@ -28,9 +28,9 @@ class ImageModel(Model):
         highest_score_label = max(result["instances"][0], key=lambda x: x["score"])["label"]
 
         # Format the result as requested
-        result = {"instances": highest_score_label}
+        result = {"instances": [highest_score_label]}
         return result
 
 if __name__ == "__main__":
-    model = ImageModel("emotions")
+    model = SentimentAnalysis("sentiment-analysis")
     ModelServer().start([model])
