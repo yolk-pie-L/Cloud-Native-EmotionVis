@@ -25,6 +25,7 @@ class Detector(Model):
         output = self.classifier(input_text)
 
         language = output[0]["label"]
+        language = language[0:2]
         logging.info("End prediction %s", language)
         return {"instances": [language, payload["instances"][0]]}
 
