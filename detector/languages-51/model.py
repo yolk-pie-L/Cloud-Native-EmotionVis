@@ -26,7 +26,7 @@ class Detector(Model):
 
         language = output[0]["label"]
         logging.info("End prediction %s", language)
-        return {"instances": [language]}
+        return {"instances": [language, payload["instances"][0]]}
 
 
 if __name__ == "__main__":

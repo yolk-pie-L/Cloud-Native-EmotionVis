@@ -20,7 +20,7 @@ class Translator(Model):
         logging.info("Start prediction")
         logging.info(payload)
 
-        input_text = payload["instances"][0]
+        input_text = payload["instances"][1]
         input_ids = self.tokenizer(input_text, return_tensors="pt").input_ids
         outputs = self.model.generate(input_ids)
         decoded = self.tokenizer.decode(outputs[0], skip_special_tokens=True)

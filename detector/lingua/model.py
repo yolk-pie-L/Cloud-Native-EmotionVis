@@ -30,7 +30,7 @@ class Detector(Model):
         language = language.lower()
         # Detect language of the given text
         logging.info("End prediction %s", language)
-        return {"instances": [language]}
+        return {"instances": [language, payload["instances"][0]]}
 
 
 if __name__ == "__main__":
