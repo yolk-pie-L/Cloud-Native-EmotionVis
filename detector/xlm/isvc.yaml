@@ -6,7 +6,7 @@ spec:
   predictor:
     containers:
       - name: kserve-container
-        image: lasylphide/xlm:latest
+        image: lasylphide/xlm-roberta-base-language-detection:latest
         resources:
           limits:
             cpu: "4"
