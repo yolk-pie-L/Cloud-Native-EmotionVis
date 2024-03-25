@@ -9,4 +9,4 @@ spec:
       routes:
       - service: sklearn-model
       - service: xgboost-model
-      - service: xlm
+      - service: xlm-roberta-base-language-detection
