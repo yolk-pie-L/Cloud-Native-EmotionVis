@@ -1,12 +1,12 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: xlm-roberta-base-language-detection-roberta-base-language-detection
+  name: xlm-roberta-base-language-detection
 spec:
   predictor:
     containers:
       - name: kserve-container
-        image: lasylphide/xlm-roberta-base-language-detection-roberta-base-language-detection:latest
+        image: lasylphide/xlm-roberta-base-language-detection:latest
         resources:
           limits:
             cpu: "4"

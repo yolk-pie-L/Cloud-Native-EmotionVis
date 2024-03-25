@@ -11,7 +11,7 @@ class Detector(Model):
         self.load()
 
     def load(self):
-        self.pipeline = pipeline("text-classification", model="papluca/xlm-roberta-base-language-detection-roberta-base-language-detection")
+        self.pipeline = pipeline("text-classification", model="papluca/xlm-roberta-base-language-detection")
         self.ready = True
 
     def predict(self, payload: Dict, headers: Dict[str, str] = None) -> Dict:
@@ -28,5 +28,5 @@ class Detector(Model):
 
 
 if __name__ == "__main__":
-    model = Detector("xlm-roberta-base-language-detection-roberta-base-language-detection")
+    model = Detector("xlm-roberta-base-language-detection")
     ModelServer().start([model])
