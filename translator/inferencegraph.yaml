@@ -1,0 +1,19 @@
+apiVersion: "serving.kserve.io/v1alpha1"
+kind: InferenceGraph
+metadata:
+  name: switch
+spec:
+  nodes:
+    root:
+      routerType: Switch
+      routes:
+      - service: de-en
+        condition: "[@this].#(instances.0==\"de\")"
+      - service: es-en
+        condition: "[@this].#(instances.0==\"es\")"
+      - service: fr-en
+        condition: "[@this].#(instances.0==\"fr\")"
+      - service: zh-en
+        condition: "[@this].#(instances.0==\"zh\")"
+      - service: ru-en
+        condition: "[@this].#(instances.0==\"ru\")"

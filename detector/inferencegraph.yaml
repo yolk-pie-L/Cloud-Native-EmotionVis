@@ -1,0 +1,12 @@
+apiVersion: "serving.kserve.io/v1alpha1"
+kind: InferenceGraph
+metadata:
+  name: ensemble
+spec:
+  nodes:
+    ensembleModel:
+      routerType: Ensemble
+      routes:
+      - service: sklearn-model
+      - service: xgboost-model
+      - service: xlm
