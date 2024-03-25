@@ -6,7 +6,10 @@ spec:
   nodes:
     ensembleModel:
       routerType: Ensemble
-      routes:
-      - service: languages-51
-      - service: lingua
-      - service: xlm-roberta-base-language-detection
+      steps:
+      - serviceName: languages-51
+        name: languages-51
+      - serviceName: lingua
+        name: lingua
+      - serviceName: xlm-roberta-base-language-detection
+        name: xlm-roberta-base-language-detection
