@@ -1,0 +1,17 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: aggregate
+spec:
+  predictor:
+    containers:
+      - name: kserve-container
+        image: lasylphide/aggregate:v1
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi
+    timeout: 300
