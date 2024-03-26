@@ -6,14 +6,14 @@ spec:
   nodes:
     root:
       routerType: Switch
-      routes:
-      - service: de-en
+      steps:
+      - serviceName: de-en
         condition: "[@this].#(instances.0==\"de\")"
-      - service: es-en
+      - serviceName: es-en
         condition: "[@this].#(instances.0==\"es\")"
-      - service: fr-en
+      - serviceName: fr-en
         condition: "[@this].#(instances.0==\"fr\")"
-      - service: zh-en
+      - serviceName: zh-en
         condition: "[@this].#(instances.0==\"zh\")"
-      - service: ru-en
+      - serviceName: ru-en
         condition: "[@this].#(instances.0==\"ru\")"
