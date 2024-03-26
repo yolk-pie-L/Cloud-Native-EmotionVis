@@ -1,17 +1,5 @@
 {
-  "languages-51": {
-    "instances": [
-      "ru", "Я хочу посмотреть кино сегодня."
-    ]
-  },
-  "lingua": {
-    "instances": [
-      "ru", "Я хочу посмотреть кино сегодня."
-    ]
-  },
-  "xlm-roberta-base-language-detection": {
-    "instances": [
-      "ru", "Я хочу посмотреть кино сегодня."
-    ]
-  }
+  "instances": [
+    "ru", "Я хочу посмотреть кино сегодня."
+  ]
 }

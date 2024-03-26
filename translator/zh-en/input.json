@@ -1,17 +1,5 @@
 {
-  "languages-51": {
-    "instances": [
-      "zh", "努力学习，天天向上"
-    ]
-  },
-  "lingua": {
-    "instances": [
-      "zh", "努力学习，天天向上"
-    ]
-  },
-  "xlm-roberta-base-language-detection": {
-    "instances": [
-      "zh", "努力学习，天天向上"
-    ]
-  }
+  "instances": [
+    "zh", "努力学习，天天向上"
+  ]
 }

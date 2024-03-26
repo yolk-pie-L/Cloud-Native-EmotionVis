@@ -1,20 +1,5 @@
 {
-  "languages-51": {
-    "instances": [
-      "de",
-      "Ich möchte heute einen Film sehen."
-    ]
-  },
-  "lingua": {
-    "instances": [
-      "de",
-      "Ich möchte heute einen Film sehen."
-    ]
-  },
-  "xlm-roberta-base-language-detection": {
-    "instances": [
-      "de",
-      "Ich möchte heute einen Film sehen."
-    ]
-  }
+  "instances": [
+    "de","Ich möchte heute einen Film sehen."
+  ]
 }
