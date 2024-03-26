@@ -3,10 +3,9 @@ import time
 import json
 
 # 设置请求的 URL 和 headers
-url = "http://a0f7b28e656044459aac52ac80b27226-1279278232.us-west-2.elb.amazonaws.com/v1/models/sdxl-turbo:predict"
+url = "http://sdxl-turbo.default.52.32.2.254.sslip.io/v1/models/sdxl-turbo:predict"
 headers = {
-    "Content-Type": "application/json",
-    "Host": "diffusers-test.default.example.com"
+    "Content-Type": "application/json"
 }
 # # 读取请求体数据从文件
 with open('./input.json', 'r') as file:

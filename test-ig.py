@@ -1,15 +1,27 @@
 import requests
 import time
 import json
+import base64
+from PIL import Image
+import io
+
+def base64_to_image(base64_string, output_path):
+    # 解码Base64字符串
+    image_data = base64.b64decode(base64_string)
+
+    # 将字节数据转换成图片
+    image = Image.open(io.BytesIO(image_data))
+
+    # 保存图片
+    image.save(output_path)
 
 # 设置请求的 URL 和 headers
-url = "http://a0f7b28e656044459aac52ac80b27226-1279278232.us-west-2.elb.amazonaws.com"
+url = "http://ensemble.default.52.32.2.254.sslip.io"
 headers = {
-    "Content-Type": "application/json",
-    "Host": "simple-pipeline.default.example.com"
+    "Content-Type": "application/json"
 }
 # # 读取请求体数据从文件
-with open('./input.json', 'r') as file:
+with open('./input.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
     data = json.dumps(data)
 
@@ -23,6 +35,8 @@ try:
     end = time.time()
     print("请求耗时：", end - start, "秒")
     print("服务器响应：", response.text)
+    base64_to_image(json.loads(response.text)["instances"], "output.png")
+
 except requests.exceptions.Timeout:
     print("请求超时。服务器没有在预定时间内响应。")
 except requests.exceptions.RequestException as e:

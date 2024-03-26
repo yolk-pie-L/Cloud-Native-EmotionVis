@@ -1,14 +1,42 @@
 apiVersion: "serving.kserve.io/v1alpha1"
-kind: "InferenceGraph"
+kind: InferenceGraph
 metadata:
-  name: "simple-pipeline"
+  name: EmoVis
 spec:
   nodes:
     root:
       routerType: Sequence
       steps:
+      - nodeName: ensemble
+      - serviceName: aggregate
+        data: $response
+      - nodeName: switch
+        data: $response
       - serviceName: sentiment-analysis
         name: sentiment-analysis # step name
+        data: $response
       - serviceName: sdxl-turbo
         name: sdxl-turbo
         data: $response
+    ensemble:
+      routerType: Ensemble
+      steps:
+      - serviceName: languages-51
+        name: languages-51
+      - serviceName: lingua
+        name: lingua
+      - serviceName: xlm-roberta-base-language-detection
+        name: xlm-roberta-base-language-detection
+    switch:
+      routerType: Switch
+      steps:
+        - serviceName: de-en
+          condition: "[@this].#(instances.0==\"de\")"
+        - serviceName: es-en
+          condition: "[@this].#(instances.0==\"es\")"
+        - serviceName: fr-en
+          condition: "[@this].#(instances.0==\"fr\")"
+        - serviceName: zh-en
+          condition: "[@this].#(instances.0==\"zh\")"
+        - serviceName: ru-en
+          condition: "[@this].#(instances.0==\"ru\")"

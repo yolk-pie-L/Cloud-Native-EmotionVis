@@ -1,7 +1,7 @@
 apiVersion: "serving.kserve.io/v1alpha1"
 kind: InferenceGraph
 metadata:
-  name: switch
+  name: translators
 spec:
   nodes:
     root:

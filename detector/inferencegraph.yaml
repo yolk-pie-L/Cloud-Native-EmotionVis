@@ -1,10 +1,16 @@
 apiVersion: "serving.kserve.io/v1alpha1"
 kind: InferenceGraph
 metadata:
-  name: ensemble
+  name: detectors
 spec:
   nodes:
     root:
+      routerType: Sequence
+      steps:
+      - nodeName: ensemble
+      - serviceName: aggregate
+        data: $response
+    ensemble:
       routerType: Ensemble
       steps:
       - serviceName: languages-51
