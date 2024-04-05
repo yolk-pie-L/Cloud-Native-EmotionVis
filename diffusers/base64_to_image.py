@@ -3,7 +3,7 @@ from PIL import Image
 import io
 
 # 文件路径
-base64_file_path = 'output'
+base64_file_path = 'v1/output'
 
 # 从文件中读取Base64编码的字符串
 with open(base64_file_path, 'r') as file:

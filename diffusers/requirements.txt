@@ -1,5 +1,0 @@
-transformers
-torch
-diffusers
-kserve
-accelerate

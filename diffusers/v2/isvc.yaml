@@ -1,17 +1,17 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: languages-51
+  name: diffusers-v2
 spec:
   predictor:
     containers:
       - name: kserve-container
-        image: lasylphide/languages-51:latest
+        image: lasylphide/diffusers:v2
         resources:
           limits:
-            cpu: "1"
-            memory: 2Gi
+            cpu: "12"
+            memory: 24Gi
           requests:
-            cpu: "1"
-            memory: 2Gi
+            cpu: "12"
+            memory: 24Gi
     timeout: 300
