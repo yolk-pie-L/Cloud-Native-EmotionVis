@@ -16,31 +16,44 @@ def base64_to_image(base64_string, output_path):
     image.save(output_path)
 
 # 设置请求的 URL 和 headers
-url = "http://adc6a1df6dca746b4b065f3a190f05ae-1531338086.us-west-2.elb.amazonaws.com"
+url = "http://emo-vis.default.34.214.162.76.sslip.io"
 headers = {
-    "Content-Type": "application/json",
-    "Host": "http://emo-vis.default.example.com"
+    "Content-Type": "application/json"
 }
 # # 读取请求体数据从文件
 with open('./input.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
     data = json.dumps(data)
 
-# 发送POST请求
-# 设置一个非常长的超时时间，比如1天（24*60*60秒），以"一直等待"服务器响应
-a=time.time()
-try:
-    start = time.time()
-    print("sending request...")
-    response = requests.post(url, headers=headers, data=data, timeout=24*60*60)
-    end = time.time()
-    print("请求耗时：", end - start, "秒")
-    print("服务器响应：", response.text)
-    base64_to_image(json.loads(response.text)["instances"], "output.png")
+total_time = 0  # 记录总响应时间
+successful_requests = 0  # 成功的请求次数
 
-except requests.exceptions.Timeout:
-    print("请求超时。服务器没有在预定时间内响应。")
-except requests.exceptions.RequestException as e:
-    print("请求失败：", e)
-b=time.time()
-print("总耗时：", b - a, "秒")
+for i in range(5):  # 发送5次请求
+    try:
+        start = time.time()
+        print(f"Sending request #{i + 1}...")
+        response = requests.post(url, headers=headers, data=data, timeout=24 * 60 * 60)
+        end = time.time()
+
+        request_time = end - start
+        total_time += request_time  # 累加响应时间
+        successful_requests += 1  # 增加成功的请求次数
+
+        print("请求耗时：", request_time, "秒")
+        # print("服务器响应：", response.text)
+        # 假设base64_to_image函数和其必要的参数已经定义
+        # base64_to_image(json.loads(response.text)["instances"], "output.png")
+
+        if i < 4:  # 如果不是最后一次请求，等待45秒
+            time.sleep(45)
+
+    except requests.exceptions.Timeout:
+        print("请求超时。服务器没有在预定时间内响应。")
+    except requests.exceptions.RequestException as e:
+        print("请求失败：", e)
+
+if successful_requests > 0:
+    average_time = total_time / successful_requests
+    print("平均请求耗时：", average_time, "秒")
+else:
+    print("没有成功的请求。")

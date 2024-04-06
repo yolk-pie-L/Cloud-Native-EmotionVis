@@ -15,8 +15,8 @@ spec:
       - serviceName: sentiment-analysis
         name: sentiment-analysis # step name
         data: $response
-      - serviceName: sdxl-turbo
-        name: sdxl-turbo
+      - serviceName: diffusers-v1
+        name: diffusers-v1
         data: $response
     ensemble:
       routerType: Ensemble
