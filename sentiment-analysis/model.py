@@ -17,8 +17,7 @@ class SentimentAnalysis(Model):
         # add log about payload
         logging.info("Start prediction")
         logging.info(payload)
-
-        emotion = self.pipeline(payload['instances'])
+        emotion = self.pipeline(payload['instances'][-1])
 
         logging.info("End prediction")
         return {"instances": emotion}

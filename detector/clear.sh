@@ -1,1 +1,0 @@
-kubectl delete isvc languages-51 lingua xlm-roberta-base-language-detection aggregate

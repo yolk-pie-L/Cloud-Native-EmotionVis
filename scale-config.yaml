@@ -4,4 +4,4 @@ metadata:
  name: config-autoscaler
  namespace: knative-serving
 data:
- container-concurrency-target-default: "5"
+ container-concurrency-target-default: "3"

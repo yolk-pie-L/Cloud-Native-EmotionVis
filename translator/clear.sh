@@ -1,1 +1,0 @@
-kubectl delete isvc de-en es-en fr-en ru-en zh-en
