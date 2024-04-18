@@ -1,0 +1,49 @@
+apiVersion: "serving.kserve.io/v1alpha1"
+kind: InferenceGraph
+metadata:
+  name: emo-vis
+spec:
+  nodes:
+    root:
+      routerType: Sequence
+      steps:
+      - nodeName: ensemble
+      - serviceName: aggregate
+        data: $response
+      - nodeName: switch
+        data: $response
+      - serviceName: sentiment-analysis
+        name: sentiment-analysis # step name
+        data: $response
+      - serviceName: diffusers-v1
+        name: diffusers-v1
+        data: $response
+    ensemble:
+      routerType: Ensemble
+      steps:
+      - serviceName: languages-51
+        name: languages-51
+      - serviceName: lingua
+        name: lingua
+      - serviceName: xlm-roberta-base-language-detection
+        name: xlm-roberta-base-language-detection
+    switch:
+      routerType: Switch
+      steps:
+        - serviceName: de-en
+          condition: "[@this].#(instances.0==\"de\")"
+        - serviceName: es-en
+          condition: "[@this].#(instances.0==\"es\")"
+        - serviceName: fr-en
+          condition: "[@this].#(instances.0==\"fr\")"
+        - serviceName: zh-en
+          condition: "[@this].#(instances.0==\"zh\")"
+        - serviceName: ru-en
+          condition: "[@this].#(instances.0==\"ru\")"
+    abtest:
+      routerType: Splitter
+      steps:
+        - serviceName: diffusers-v1
+          weight: 0.5
+        - serviceName: diffusers-v2
+          weight: 0.5
